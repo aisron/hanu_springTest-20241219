@@ -1,5 +1,7 @@
 package com.jbedu.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +37,32 @@ public class DataController {
 		
 	}
 	
+	@RequestMapping(value = "/login") // login.jsp 실행 시키는 역할
+	public String login() {
+		
+		return "login";
+	}
 	
+	
+	// form에서 잡아오기
+	@RequestMapping(value = "/confirmID")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String corfirmID(HttpServletRequest request, Model model) {  // 매개변수로 request 객체 넣어준다
+		//HttpServletRequest request, Model model 무조건작성
+		
+		String mid = request.getParameter("mid");
+		String mpw = request.getParameter("mpw");
+		
+		
+//		if(mid.equals("tiger")&& mpw.equals("12345")) {
+//			model.addAttribute("idcheck", "memberOk");
+//		} else {
+//			model.addAttribute("idcheck","memberNo");
+//			
+//		}
+		
+		model.addAttribute("loginid", mid);
+		model.addAttribute("loginpw", mpw);
+		
+		return "confirmID";
+	}
 }
