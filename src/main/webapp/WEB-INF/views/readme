@@ -134,3 +134,35 @@ form에서 값 잡아오기  -------------------
 		
 		return "checkID";
 	}
+	
+	
+----405 에러 - 방식이 잘못된거, 500에러 자바 문법에러 ---------
+
+
+어노테이션을 이용한 파라미터 값 받기 -------------------------------------------------------------------------
+
+
+	// 체크 아이디 2                          // method 방식 설정
+	@RequestMapping(value = "/checkID2")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String  checkID2(@RequestParam("mid") String mid, @RequestParam("mpw") String mpw,   Model model) {  // 매개변수로 request 객체 넣어준다
+		//넘길 값이 적을 때 유용
+		
+//		String mid = request.getParameter("mid");
+//		String mpw = request.getParameter("mpw");
+		
+		
+		if(mid.equals("tiger")&& mpw.equals("12345")) {// 로그인 성공
+			model.addAttribute("idcheck", "memberOk");
+			model.addAttribute("loginid", mid);
+			model.addAttribute("loginpw", mpw);
+			
+		} else { // 로그인 실패
+			model.addAttribute("idcheck","memberNo");
+			
+		}
+		
+		return "checkID";
+	}
+	
+	
+	--------------------------------

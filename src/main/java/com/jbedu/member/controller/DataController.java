@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -44,10 +45,15 @@ public class DataController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login2") // login.jsp 실행 시키는 역할
+	@RequestMapping(value = "/login2") // login2.jsp 실행 시키는 역할
 	public String login2() {
 		
 		return "login2";
+	}
+	@RequestMapping(value = "/login3") // login3.jsp 실행 시키는 역할
+	public String login3() {
+		
+		return "login3";
 	}
 	
 	
@@ -87,6 +93,28 @@ public class DataController {
 			model.addAttribute("idcheck", "memberOk");
 			
 			// 값 넘겨주기
+			model.addAttribute("loginid", mid);
+			model.addAttribute("loginpw", mpw);
+			
+		} else { // 로그인 실패
+			model.addAttribute("idcheck","memberNo");
+			
+		}
+		
+		return "checkID";
+	}
+	
+	// 체크 아이디 2                          // method 방식 설정
+	@RequestMapping(value = "/checkID2")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String  checkID2(@RequestParam("mid") String mid, @RequestParam("mpw") String mpw,   Model model) {  // 매개변수로 request 객체 넣어준다
+		//넘길 값이 적을 때 유용
+		
+//		String mid = request.getParameter("mid");
+//		String mpw = request.getParameter("mpw");
+		
+		
+		if(mid.equals("tiger")&& mpw.equals("12345")) {// 로그인 성공
+			model.addAttribute("idcheck", "memberOk");
 			model.addAttribute("loginid", mid);
 			model.addAttribute("loginpw", mpw);
 			
