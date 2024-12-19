@@ -1,0 +1,69 @@
+컨트롤러클래스에 작성 할 어노테이션   -----------------------
+
+@Controller   <-- 어노테이션 Controller -> 컨트롤러 클래스로 지정
+
+@RequestMapping(value ="/")  // "/ 위치 지정없을때 인덱스 페이지 연결해주면 404 안뜸
+public String baseball() {
+		return "index";    // 확장자는 따로 붙음
+	} 
+
+
+참고 사이트
+https://luanaeun.tistory.com/200
+
+------------------------------------------------
+
+
+css, img, js  폴더 위치는 ----------------------------------------
+	src/resources 안에 폴더 만들어 넣어야 함
+
+폴더 지정확인 servlet-context.xml 확인
+<resources mapping="/resources/**" location="/resources/" />
+
+폴더 추가하여 지정하기
+<resources mapping="/images/**" location="/resources/" />
+
+기본 루트 위치 webapp폴더
+상대경로임을 확인
+
+상위 폴더는 ../
+
+
+---------------------------------------------------------------
+
+컨트롤러 관련 에러는 
+주소가 맞는 지 확인해야봐야 한다.
+
+
+controller의 model 객체  (통로역할) ------------------------------------------
+모델 클래스로 만든 모델 객체에 db에서 받은 걸 담아서 view에 보내주는 역할
+	
+	// 택배 박스에 담아주기
+	public String data(Model model) {  // Model model
+ 		모델박스에 담기
+		
+		model.addAttribute("memberName",name);  // 앞에 이름, name
+		// name 값을 모델 객체에 담음-> data.jsp에  넣어줌
+	
+		
+		return "data";
+		
+	}
+	
+	
+	
+ModelAndView ----------------------
+//ModelAndView -> view에 전달해줄 갑과 view (jsp) 파일 이름을 동시에 전달해주는 객체
+	
+	@RequestMapping(value ="/datamodel")
+	public ModelAndView datamodel() {  // ModelAndView 클래스 이용한 데이터 전달 // 매개변수 없음
+//		ModelAndView -> view에 전달해줄 갑과 view (jsp) 파일 이름을 동시에 전달해주는 객체
+		int age = 27; // 홍길동의 나이
+		
+		ModelAndView mv = new ModelAndView(); //ModelAndView 객체 생성
+		mv.addObject("age",age); // Model 객체에 데인터 담기
+		mv.setViewName("datamodel"); // view 이름 (jsp 이름)
+		
+		return mv;
+		
+	}	
