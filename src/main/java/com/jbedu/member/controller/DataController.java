@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jbedu.member.dto.MemberDto;
+
 @Controller
 public class DataController {
 	
@@ -54,6 +56,12 @@ public class DataController {
 	public String login3() {
 		
 		return "login3";
+	}
+	
+	@RequestMapping(value = "/join") // login3.jsp 실행 시키는 역할
+	public String join() {
+		
+		return "join";
 	}
 	
 	
@@ -124,5 +132,29 @@ public class DataController {
 		}
 		
 		return "checkID";
+	}
+	
+	// join ok                  
+	@RequestMapping(value = "/joinOk")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String  joinOk(HttpServletRequest request, Model model) {
+	
+		
+		String mid = request.getParameter("mid");
+		String mpw = request.getParameter("mpw");
+		String mname= request.getParameter("mname");
+		String memail = request.getParameter("memail");
+		
+		// Dto를 만들어 보내기
+		MemberDto memberDto = new MemberDto(mid, mpw, mname, memail);
+		
+		model.addAttribute("memberDto", memberDto); // model에 dto
+//		
+//		model.addAttribute("mid", mid);
+//		model.addAttribute("mpw", mpw);
+//		model.addAttribute("mname",mname);
+//		model.addAttribute("memail", memail);
+		
+		
+		return "joinOk";
 	}
 }
