@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-join<br>
-	<form action="joinOk">
+
+join2<br>
+	<form action="joinOk2">
 		아이디: 
 		<input type="text" name ="mid"><br><br>
 		비밀번호 :<input type="text" name ="mpw"><br><br>

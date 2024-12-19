@@ -65,6 +65,13 @@ public class DataController {
 	}
 	
 	
+	@RequestMapping(value = "/join2") // login3.jsp 실행 시키는 역할
+	public String join2() {
+		
+		return "join2";
+	}
+	
+	
 	// form에서 잡아오기
 	@RequestMapping(value = "/confirmID")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
 	public String corfirmID(HttpServletRequest request, Model model) {  // 매개변수로 request 객체 넣어준다
@@ -154,6 +161,23 @@ public class DataController {
 //		model.addAttribute("mname",mname);
 //		model.addAttribute("memail", memail);
 		
+		
+		return "joinOk";
+	}
+	// join ok2                  
+	@RequestMapping(value = "/joinOk2")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String  joinOk2(MemberDto memberDto, Model model) {
+
+		
+//		String mid = request.getParameter("mid");
+//		String mpw = request.getParameter("mpw");
+//		String mname= request.getParameter("mname");
+//		String memail = request.getParameter("memail");
+//		
+//		// Dto를 만들어 보내기
+//		MemberDto memberDto = new MemberDto(mid, mpw, mname, memail);
+		
+		model.addAttribute("memberDto", memberDto); // model에 dto
 		
 		return "joinOk";
 	}
