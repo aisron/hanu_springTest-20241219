@@ -94,3 +94,43 @@ form에서 값 잡아오기  -------------------
 		return "confirmID";
 	}
 		
+		
+		
+체크 아디 비번	-----------------
+	
+	checkID.jsp
+	<!-- jstl if else  -->
+		<c:choose>
+			<c:when test="${idcheck eq 'memberOk'}">  <!-- jstl  문자열 비교  eq -->
+				<h2>${loginid}님 ${loginpw }로그인 성공하셨습니다.</h2>
+			</c:when>
+			<c:otherwise>
+				<h2>로그인 실패! 아이디와 비밀번호를 확인하세요	</h2>
+			</c:otherwise>	
+		</c:choose>
+	
+	
+	컨트롤러
+	// 체크 아이디                           // method 방식 설정
+	@RequestMapping(value = "/checkID", method = RequestMethod.POST )  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String  checkID(HttpServletRequest request, Model model) {  // 매개변수로 request 객체 넣어준다
+		//HttpServletRequest request, Model model 무조건작성
+		
+		String mid = request.getParameter("mid");
+		String mpw = request.getParameter("mpw");
+		
+		
+		if(mid.equals("tiger")&& mpw.equals("12345")) {// 로그인 성공
+			model.addAttribute("idcheck", "memberOk");
+			
+			// 값 넘겨주기
+			model.addAttribute("loginid", mid);
+			model.addAttribute("loginpw", mpw);
+			
+		} else { // 로그인 실패
+			model.addAttribute("idcheck","memberNo");
+			
+		}
+		
+		return "checkID";
+	}
