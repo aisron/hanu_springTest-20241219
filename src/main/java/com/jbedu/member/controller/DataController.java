@@ -59,20 +59,20 @@ public class DataController {
 		return "login3";
 	}
 	
-	@RequestMapping(value = "/join") // login3.jsp 실행 시키는 역할
+	@RequestMapping(value = "/join") // join.jsp 실행 시키는 역할
 	public String join() {
 		
 		return "join";
 	}
 	
 	
-	@RequestMapping(value = "/join2") // login3.jsp 실행 시키는 역할
+	@RequestMapping(value = "/join2") // join2.jsp 실행 시키는 역할
 	public String join2() {
 		
 		return "join2";
 	}
 	
-	@RequestMapping(value = "/join21") // login3.jsp 실행 시키는 역할
+	@RequestMapping(value = "/join21") // join21.jsp 실행 시키는 역할
 	public String join21() {
 		
 		return "join21";
@@ -149,8 +149,10 @@ public class DataController {
 	}
 	
 	// joinOk                  
-	@RequestMapping(value = "/joinOk")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
-	public String  joinOk(HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/joinOk")// 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String joinOk(HttpServletRequest request, Model model) {
+	
+		
 		
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
