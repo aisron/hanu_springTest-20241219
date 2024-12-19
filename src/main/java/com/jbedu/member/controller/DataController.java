@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,6 +70,12 @@ public class DataController {
 	public String join2() {
 		
 		return "join2";
+	}
+	
+	@RequestMapping(value = "/join21") // login3.jsp 실행 시키는 역할
+	public String join21() {
+		
+		return "join21";
 	}
 	
 	
@@ -141,10 +148,9 @@ public class DataController {
 		return "checkID";
 	}
 	
-	// join ok                  
+	// joinOk                  
 	@RequestMapping(value = "/joinOk")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
 	public String  joinOk(HttpServletRequest request, Model model) {
-	
 		
 		String mid = request.getParameter("mid");
 		String mpw = request.getParameter("mpw");
@@ -164,21 +170,25 @@ public class DataController {
 		
 		return "joinOk";
 	}
-	// join ok2                  
+	// joinOk2                  
 	@RequestMapping(value = "/joinOk2")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
 	public String  joinOk2(MemberDto memberDto, Model model) {
+						           //memberDto  이름 같은게 좋음 -> 전에는 안되었다 함
 
-		
-//		String mid = request.getParameter("mid");
-//		String mpw = request.getParameter("mpw");
-//		String mname= request.getParameter("mname");
-//		String memail = request.getParameter("memail");
-//		
 //		// Dto를 만들어 보내기
 //		MemberDto memberDto = new MemberDto(mid, mpw, mname, memail);
 		
 		model.addAttribute("memberDto", memberDto); // model에 dto
+		// 생략가능
 		
 		return "joinOk";
+	}
+	// joinOk21                   
+	@RequestMapping(value = "/joinOk21")  // 클라이언트의 로그인 요청을 여기서 catch (parameter 값도 함께)
+	public String  joinOk21(@ModelAttribute("ddd") MemberDto ddd, Model model) {
+		// memberDto 객체의 이름을 ddd로 변경하여 model 객체에도 ddd 이름으로 memberDto객체를 실어 보냄
+		//
+		
+		return "joinOk2";
 	}
 }
